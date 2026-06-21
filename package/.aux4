@@ -1,0 +1,68 @@
+{
+  "scope": "aux4",
+  "name": "pkger-finder",
+  "version": "0.1.0",
+  "description": "Search the documentation of your installed aux4 packages and commands",
+  "license": "Apache-2.0",
+  "dependencies": [
+    "aux4/pkger"
+  ],
+  "tags": [
+    "aux4",
+    "search",
+    "discovery",
+    "packages"
+  ],
+  "hooks": [
+    {
+      "command": "aux4:pkger/install",
+      "after": [
+        "aux4 aux4 pkger reindex"
+      ]
+    },
+    {
+      "command": "aux4:pkger/uninstall",
+      "after": [
+        "aux4 aux4 pkger reindex"
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "name": "aux4:pkger",
+      "commands": [
+        {
+          "name": "find",
+          "execute": [
+            "${packageDir}/aux4-pkger-finder find values(query, limit)"
+          ],
+          "help": {
+            "text": "Search installed packages and commands by their documentation",
+            "variables": [
+              {
+                "name": "query",
+                "text": "Words to search for. Quote multi-word queries.",
+                "arg": true
+              },
+              {
+                "name": "limit",
+                "text": "Maximum number of results to show",
+                "default": "10"
+              }
+            ]
+          }
+        },
+        {
+          "name": "reindex",
+          "private": true,
+          "execute": [
+            "${packageDir}/aux4-pkger-finder reindex"
+          ],
+          "help": {
+            "text": "Rebuild the search index from all installed packages"
+          }
+        }
+      ]
+    }
+  ]
+}

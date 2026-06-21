@@ -1,0 +1,9 @@
+.idea
+node_modules
+coverage
+local-test
+package/aux4-pkger-finder
+package/dist
+go.sum
+**/.DS_Store
+**/*.zip
