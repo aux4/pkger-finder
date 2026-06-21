@@ -1,7 +1,7 @@
 {
   "scope": "aux4",
   "name": "pkger-finder",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Search the documentation of your installed aux4 packages and commands",
   "license": "Apache-2.0",
   "dependencies": [
